@@ -1,0 +1,36 @@
+
+package pages;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import helpers.ElementHelper;
+
+public class LopHocPage {
+    WebDriver driver;
+    ElementHelper helper;
+
+    By menuDaoTao = By.xpath("//span[text()='Đào tạo']");
+    By submenuLopHoc = By.xpath("//a[contains(text(),'Lớp học')]");
+
+    By buttonThemLop = By.xpath("//button[contains(text(),'Thêm lớp học')]");
+    By tenLopInput = By.id("tenLop");
+    By moTaInput = By.id("moTa");
+    By luuButton = By.xpath("//button[contains(text(),'Lưu')]");
+
+    public LopHocPage(WebDriver driver) {
+        this.driver = driver;
+        this.helper = new ElementHelper(driver);
+    }
+
+    public void openLopHocPage() {
+        helper.hover(menuDaoTao);
+        helper.click(submenuLopHoc);
+    }
+
+    public void themLopHoc(String tenLop, String moTa) {
+        helper.click(buttonThemLop);
+        helper.sendKeys(tenLopInput, tenLop);
+        helper.sendKeys(moTaInput, moTa);
+        helper.click(luuButton);
+    }
+}
