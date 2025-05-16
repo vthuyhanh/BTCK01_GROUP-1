@@ -1,0 +1,30 @@
+package utils;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Driverfactory {
+
+    private static WebDriver driver;
+
+    // Trả về driver nếu đã tồn tại, nếu không thì khởi tạo mới
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            // Bạn có thể đọc từ config để chọn Chrome/Firefox
+            System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+            driver = new ChromeDriver();
+
+            // Tuỳ chọn: Phóng to cửa sổ
+            driver.manage().window().maximize();
+        }
+        return driver;
+    }
+
+    // Đóng driver và đặt về null để lần sau tạo mới
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
+}
