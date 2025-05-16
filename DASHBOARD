@@ -1,0 +1,18 @@
+package pages;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class Dashboard extends BasePage {
+
+    private final By userProfileIcon = By.cssSelector(".user-avatar"); // hoặc ID thực tế
+
+    public Dashboard(WebDriver driver) {
+        super(driver);
+    }
+
+    public boolean isUserLoggedIn() {
+        return isVisible(userProfileIcon);  // biểu tượng avatar, tên người dùng, hoặc tiêu đề dashboard
+    }
+}
